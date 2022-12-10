@@ -1,0 +1,137 @@
+{% extends "contacts/base.html" %}
+{% block title %}Edition du contact{% endblock %}
+{% block header %}
+{{block.super}}
+<header>
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">A propos</h4>
+                    <p class="text-muted">
+                        Voluptua voluptua dolor dolore kasd justo. Labore voluptua et sea magna sanctus augue placerat
+                        ea labore lorem sadipscing option stet ea magna elitr et. Amet ipsum kasd sit magna aliquyam ut
+                        tation magna dolore aliquyam. Et dolore justo veniam dolore vel ipsum consectetuer esse facilisi
+                        lorem. Magna sea sit et gubergren clita consetetur lorem no elit ex ullamcorper eos aliquam
+                        nonumy vero. Rebum diam dolores ex accumsan takimata eu adipiscing et et erat consetetur
+                        molestie takimata at congue feugait. Vero nisl et ea et iriure magna nobis vero takimata diam.
+                        Consetetur nibh aliquyam imperdiet at at dolore praesent tation ut augue sed sea sed consetetur
+                        accusam et sed euismod. Nulla dolore dolore at ipsum autem diam et iusto takimata lorem at lorem
+                        dolore nonumy sed eirmod voluptua. Sit luptatum voluptua et eos diam facilisis voluptua. Justo
+                        gubergren aliquyam. Ipsum gubergren elitr clita amet magna. Doming lorem gubergren consetetur
+                        amet ut ipsum et diam nonumy ipsum dolore amet no.
+                    </p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Contact</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white">Follow on Twitter</a></li>
+                        <li><a href="#" class="text-white">Like on Facebook</a></li>
+                        <li><a href="#" class="text-white">Email me</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor"
+                     stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="me-2"
+                     viewBox="0 0 24 24">
+                    <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
+                    <circle cx="12" cy="13" r="4"/>
+                </svg>
+                <strong>Contact</strong>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader"
+                    aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </div>
+</header>
+{% endblock %}
+
+{% block content %}
+{{block.super}}
+<section class="py-5 text-center container">
+    <img class="d-block mx-auto mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
+    <h2>Fiche contact</h2>
+</section>
+<div class="container">
+<div class="row .col-md-8">
+
+        <div class="col-md-7 col-lg-8">
+            <h4 class="mb-3">Données personnelles</h4>
+            <form class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-sm-6">
+                        <label for="firstName" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="firstName" placeholder="Nom contact"
+                               value="{{contact.nom|upper}}" required>
+                        <div class="invalid-feedback">
+                            Nom incorrect.
+                        </div>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="lastName" class="form-label">Prénom</label>
+                        <input type="text" class="form-control" id="lastName" placeholder="Prènom contact"
+                               value="{{contact.prenom}}" required>
+                        <div class="invalid-feedback">
+                            Prènom incorrect.
+                        </div>
+                    </div>
+
+                    <div class="col-12 input-group">
+                        <label for="email" class="form-label">Email<span class="text-muted">(Optional)</span></label>
+                        <div class="input-group has-validation">
+                            <span class="input-group-text">@</span>
+                            <input type="text" class="form-control" id="email" placeholder="email">
+                            <div class="invalid-feedback">
+                                Email incorrect.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="address" class="form-label">Addresse</label>
+                        <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                               value="{{adresse.adresse1}}" required>
+                        <div class="invalid-feedback">
+                            Please enter your shipping address.
+                        </div>
+                    </div>
+
+                    <div class="col-12">
+                        <label for="address2" class="form-label">Addresse 2 <span
+                                class="text-muted">(Optional)</span></label>
+                        <input type="text" class="form-control" id="address2" placeholder="Apartment or suite"
+                               value="{{adresse.adresse2}}">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="cp" class="form-label">Code Postal</label>
+                        <input type="text" class="form-control" id="cp" placeholder="Code Postal" value="{{ville.codepostal}}" required>
+                        <div class="invalid-feedback">
+                            Code Postal demandé.
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="ville" class="form-label">Ville </label>
+                        <input type="text" class="form-control" id="ville" placeholder="ville"
+                               value="{{ville.nomville}}" required>
+                        <div class="invalid-feedback">
+                            Ville demandée.
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+</div>
+</div>
+{% endblock %}
