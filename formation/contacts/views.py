@@ -1,21 +1,25 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
-from contacts.models import Contact, Adresse, Ville 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
+from .models import Contact, Adresse, Ville
+
 
 # Create your views here.
-def liste_contacts(request,*args, **kwargs):
-    # print (args, kwargs)
-    # print (request)
+def liste_contacts(request, *args, **kwargs):
     contacts = Contact.objects.all().order_by('nom')
-    context ={ 'contacts' : contacts }    
-    return render(request, 'contact.html',context)
-    
+    context = {'contacts': contacts}
+    return render(request, 'contact.html', context)
 
-def edit_contact(request,id_contact, *args, **kwargs):
-    # print (args, kwargs)
-    # print (request)
-    contact = Contact.objects.filter(contactid = int(id_contact)).select_related('Adresse').select_related('Ville')      
-    context ={ 'contacts' : contact }    
-    return render(request, 'edit_contact.html',context)
-    # request, 'index.html', {"contacts":contacts})
-    # return render(request, 'base.html', context = {"contacts":contacts})
+def edit_contact(request, id_contact, *args, **kwargs):
+    contact = get_object_or_404(Contact, pk=id_contact)  # Contact.objects.get(pk=id_contact)
+    adresse = Adresse.objects.get(pk=int(contact.adressepostaleid))
+    ville = adresse.villeid
+    print('Appel view edit_contact : \nLe contact souhaité est : ')
+    print(contact)
+    print("Appel view edit_contact : \nL'adresse du contact est : ")
+    print(adresse)
+    print('Appel view edit_contact : \nLa ville du contact est : ')
+    print(ville)
+    context = {'contact': contact, 'adresse': adresse, 'ville': ville}
+    return render(request, 'contacts/edit_contact.html', context)
